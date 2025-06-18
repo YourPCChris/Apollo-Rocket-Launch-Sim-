@@ -11,7 +11,8 @@ class Button
     float x, 
           y,
         width,
-        height;
+        height,
+        fontSize;
     Color color;
     std::unique_ptr<Rectangle> rec;
     const char* text;
@@ -19,6 +20,8 @@ class Button
     public:
     Button(const char* newText, float newX, float newY, float newWidth=160, float newHeight=60);
     void display();
-    float getHeight();
     Rectangle getRec();
+    float getHeight();
+    float getX();
+    float getY();
 };

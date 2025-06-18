@@ -3,13 +3,13 @@
 
 Rocket::Rocket()
 {
-    pos = (Vector3){0.0f,0.0f,0.0f};
     width = 10;
     height = 10;
     depth = 10;
     color = RED;
     dx = 0;
     dy = 0;
+    pos = (Vector3){0.0f,height/2,0.0f};
 }
 
 
@@ -25,6 +25,13 @@ void Rocket::update()
     pos.x += dx;
     pos.y += dy;
     pos.z += dx;
+}
+
+void Rocket::pause()
+{
+    dy = 0;
+    dx = 0;
+    dz = 0;
 }
 
 void Rocket::display()

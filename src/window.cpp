@@ -16,8 +16,10 @@ void Window::display()
 }
 void Window::addButton(std::string newText)
 {
-    int newY = (buttons.size() == 0) ? (25) : (25*((buttons.size()/10)+1));
+    float newY = (buttons.size() == 0) ? (25) : (buttons.back()->getHeight()+buttons.back()->getRec().y + 10);
+    //std::cout << "Size of buttons is: " << buttons.size() << std::endl;
     buttons.push_back(std::make_unique<Button>(newText.c_str(), 20, newY));
+    //std::cout << "New Button is at -> " <<  buttons.back()->getX() << " : " << buttons.back()->getY() << std::endl;
 }
 
 

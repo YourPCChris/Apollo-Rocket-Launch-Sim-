@@ -9,7 +9,8 @@ class Rocket
         height,
         depth,
         dy,
-        dx;
+        dx,
+        dz;
     Color color;
 
     public:
@@ -17,4 +18,5 @@ class Rocket
     void launch();
     void display();
     void update();
+    void pause();
 };
