@@ -9,6 +9,8 @@ int main()
     //std::cout << "We Ball" << std::endl;
     
     Window w = Window(1000, 800);
+    std::string launchText = "Launch Rocket (1)";
+    w.addButton(launchText);
     
     InitWindow(w.getWidth(), w.getHeight(), "Apollo");
 
@@ -28,12 +30,16 @@ int main()
     
     while (!WindowShouldClose())
     {
+
+        if (IsKeyPressed(KEY_ONE)) rocket->launch();
+
         BeginDrawing();
         w.display();
 
         BeginMode3D(camera);
         //DrawCube((Vector3){0.0f, 0.0f, 0.0f}, 2.0f, 2.0f, 2.0f, RED);
         DrawGrid(10, 1.0f);
+        rocket->update();
         rocket->display();
         EndMode3D();
         EndDrawing();

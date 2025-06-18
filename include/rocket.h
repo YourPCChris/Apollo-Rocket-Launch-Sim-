@@ -7,11 +7,14 @@ class Rocket
     float
         width,
         height,
-        depth;
+        depth,
+        dy,
+        dx;
     Color color;
 
     public:
     Rocket();
     void launch();
     void display();
+    void update();
 };

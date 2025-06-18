@@ -8,6 +8,8 @@ Rocket::Rocket()
     height = 10;
     depth = 10;
     color = RED;
+    dx = 0;
+    dy = 0;
 }
 
 
@@ -15,6 +17,14 @@ void Rocket::launch()
 {
     //Booster animation 
     //set dy
+    dy = 1;
+}
+
+void Rocket::update()
+{
+    pos.x += dx;
+    pos.y += dy;
+    pos.z += dx;
 }
 
 void Rocket::display()
