@@ -34,6 +34,12 @@ void Rocket::pause()
     dz = 0;
 }
 
+void Rocket::resetPos()
+{
+    pause();
+    pos = (Vector3){0.0f,(float)height/2,0.0f};
+}
+
 void Rocket::display()
 {
     DrawCube(pos, width, height, depth, color);

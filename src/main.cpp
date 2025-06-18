@@ -11,6 +11,7 @@ int main()
     Window w = Window(1000, 800);
     w.addButton("Launch Rocket 1 ");
     w.addButton("Pause Rocket 0 ");
+    w.addButton("Reset Rocket");
     
     InitWindow(w.getWidth(), w.getHeight(), "Apollo");
 
@@ -33,6 +34,7 @@ int main()
 
         if (IsKeyPressed(KEY_ONE)) rocket->launch();
         if (IsKeyPressed(KEY_ZERO)) rocket->pause();
+        if (IsKeyPressed(KEY_TWO)) rocket->resetPos();
 
         BeginDrawing();
         w.display();

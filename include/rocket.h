@@ -19,4 +19,5 @@ class Rocket
     void display();
     void update();
     void pause();
+    void resetPos();
 };
