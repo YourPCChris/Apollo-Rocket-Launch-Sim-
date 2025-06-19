@@ -15,10 +15,10 @@ class Button
         fontSize;
     Color color;
     std::unique_ptr<Rectangle> rec;
-    const char* text;
+    std::string text;
 
     public:
-    Button(const char* newText, float newX, float newY, float newWidth=160, float newHeight=60);
+    Button(std::string newText, float newX, float newY, float newWidth=160, float newHeight=60);
     void display();
     Rectangle getRec();
     float getHeight();

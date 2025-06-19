@@ -12,12 +12,14 @@ class Rocket
         dx,
         dz;
     Color color;
+    bool boosterOn;
 
     public:
     Rocket();
     void launch();
     void display();
-    void update();
+    void update(int xForces, int yForces, int zForces);
     void pause();
     void resetPos();
+    bool getBoosterOn();
 };

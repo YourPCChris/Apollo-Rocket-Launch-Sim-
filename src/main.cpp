@@ -3,16 +3,18 @@
 #include <memory>
 #include "window.h"
 #include "rocket.h"
+#include "weather.h"
 
 int main()
 {
     //std::cout << "We Ball" << std::endl;
     
     Window w = Window(1000, 800);
-    w.addButton("Launch Rocket 1 ");
-    w.addButton("Pause Rocket 0 ");
-    w.addButton("Reset Rocket");
-    
+    std::string launchText = "Boosters 1";
+    std::string resetRocketText = "Reset Rocket 2";
+    w.addButton(launchText);
+    w.addButton(resetRocketText);
+
     InitWindow(w.getWidth(), w.getHeight(), "Apollo");
 
     Camera3D camera = {0};
@@ -26,14 +28,13 @@ int main()
     SetTargetFPS(60);
 
     std::unique_ptr<Rocket> rocket = std::make_unique<Rocket>();
-    Vector3 startPos = camera.position;
-    Vector3 targetPos = camera.target;
+    std::unique_ptr<ForceManagement> fm = std::make_unique<ForceManagement>();
     
+
     while (!WindowShouldClose())
     {
 
-        if (IsKeyPressed(KEY_ONE)) rocket->launch();
-        if (IsKeyPressed(KEY_ZERO)) rocket->pause();
+        if (IsKeyPressed(KEY_ONE)) (rocket->getBoosterOn()) ? rocket->pause() : rocket->launch();
         if (IsKeyPressed(KEY_TWO)) rocket->resetPos();
 
         BeginDrawing();
@@ -42,7 +43,7 @@ int main()
         BeginMode3D(camera);
         //DrawCube((Vector3){0.0f, 0.0f, 0.0f}, 2.0f, 2.0f, 2.0f, RED);
         DrawGrid(300, 1.0f);
-        rocket->update();
+        rocket->update(fm->getXForce(), fm->getYForce(), fm->getZForce());
         rocket->display();
         EndMode3D();
         EndDrawing();

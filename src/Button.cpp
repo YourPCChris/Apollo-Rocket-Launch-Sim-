@@ -3,7 +3,7 @@
 #include "raylib.h"
 
 //-------------------------Button___________________________
-Button::Button(const char* newText, float newX, float newY, float newWidth, float newHeight)
+Button::Button(std::string newText, float newX, float newY, float newWidth, float newHeight)
 :text(newText), x(newX), y(newY), width(newWidth), height(newHeight), color(DARKGRAY)
 {
     rec = std::make_unique<Rectangle>(Rectangle{x, y, width, height});
@@ -13,10 +13,10 @@ Button::Button(const char* newText, float newX, float newY, float newWidth, floa
 void Button::display()
 {
     DrawRectangleRec(*rec, DARKGRAY);
-    int textWidth = MeasureText(text, fontSize);
+    int textWidth = MeasureText(text.c_str(), fontSize);
     float textX = x + (width - textWidth) / 2;
     float textY = y + (height - fontSize) / 2;
-    DrawText(text, textX, textY, fontSize, BLACK);
+    DrawText(text.c_str(), textX, textY, fontSize, BLACK);
 }
 
 float Button::getHeight() { return height;}   

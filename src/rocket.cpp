@@ -10,25 +10,28 @@ Rocket::Rocket()
     dx = 0;
     dy = 0;
     pos = (Vector3){0.0f,height/2,0.0f};
+    boosterOn = false;
 }
 
 
 void Rocket::launch()
 {
+    boosterOn = true;
     //Booster animation 
     //set dy
     dy = 1;
 }
 
-void Rocket::update()
+void Rocket::update(int xForces, int yForces, int zForces)
 {
-    pos.x += dx;
-    pos.y += dy;
-    pos.z += dx;
+    pos.x += dx + xForces;
+    pos.y += dy + yForces;
+    pos.z += dz + zForces;
 }
 
 void Rocket::pause()
 {
+    boosterOn = false;
     dy = 0;
     dx = 0;
     dz = 0;
@@ -57,4 +60,5 @@ void Rocket::display()
     DrawTriangle3D(bottomRight, bottomLeft, peak, color);
 }
 
+bool Rocket::getBoosterOn() { return boosterOn;}
 
