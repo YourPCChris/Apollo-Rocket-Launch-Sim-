@@ -20,8 +20,14 @@ Vector3 addVector3(Vector3 vecOne, Vector3 vecTwo)
 
 void ForceManagement::update() 
 {
-    forces = addVector3(forces, wind->getForce());
-    forces = addVector3(forces, gravity->getForce());
+    if (wind->getIsOn()) {
+        forces = addVector3(forces, wind->getForce()); 
+        wind->turnOff();
+    }
+    if (gravity->getIsOn()) {
+        forces = addVector3(forces, gravity->getForce());
+        gravity->turnOff();
+    }
 }
 
 void ForceManagement::addXForce(int newForce) { forces.x = forces.x + newForce; }
@@ -37,7 +43,7 @@ int ForceManagement::getZForce() { return forces.z; }
 Wind::Wind()
 {
     force = Vector3 { 0.0f, 0.0f, 0.0f };
-    speed = 0;
+    speed = 10;
     isOn = false;
 }
 
@@ -49,9 +55,16 @@ void Wind::setSpeed(int newSpeed) { speed = newSpeed; }
 int Wind::getSpeed() { return speed; }
 Direction Wind::getDirection() { return direction; }
 bool Wind::getIsOn() { return isOn; }
-void Wind::turnOn() { isOn = true; }
-void Wind::turnOff() { isOn = false; }
-
+void Wind::turnOn() 
+{
+    isOn = true; 
+    force.x = speed;
+}
+void Wind::turnOff() 
+{
+    isOn = false; 
+    force = (Vector3){0.0f, 0.0f, 0.0f};
+}
 
 //-----------------------Gravity------------------------------------------
 Gravity::Gravity(int newG) : g(newG), force((Vector3){0.0f, 0.0f, 0.0f}){};
@@ -60,6 +73,7 @@ int Gravity::getG() { return g; }
 void Gravity::turnOn() { isOn = true; }
 void Gravity::turnOff() { isOn = false; }
 Vector3 Gravity::getForce() { return force; }
+bool Gravity::getIsOn() { return isOn; }
 
 
 

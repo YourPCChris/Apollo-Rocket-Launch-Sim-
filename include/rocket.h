@@ -4,6 +4,7 @@
 class Rocket
 {
     Vector3 pos;
+    Vector3 force;
     float
         width,
         height,
@@ -18,8 +19,10 @@ class Rocket
     Rocket();
     void launch();
     void display();
-    void update(int xForces, int yForces, int zForces);
+    void update(float xForces, float yForces, float zForces);
     void pause();
     void resetPos();
     bool getBoosterOn();
+    Vector3 getForce();
+    void minusForce(Vector3 newForce);
 };

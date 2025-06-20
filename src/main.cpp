@@ -14,6 +14,8 @@ int main()
     std::string resetRocketText = "Reset Rocket 2";
     w.addButton(launchText);
     w.addButton(resetRocketText);
+    w.addButton("Press (3) for wind");
+    w.addButton("Press (4) for gravity");
 
     InitWindow(w.getWidth(), w.getHeight(), "Apollo");
 
@@ -36,8 +38,17 @@ int main()
 
         if (IsKeyPressed(KEY_ONE)) (rocket->getBoosterOn()) ? rocket->pause() : rocket->launch();
         if (IsKeyPressed(KEY_TWO)) rocket->resetPos();
-        //if (IsKeyPressed(KEY_THREE)) (fm->wind->getIsOn()) ? (fm->wind->turnOff()) : (fm->wind->turnOn());
+        if (IsKeyPressed(KEY_THREE)){
+            if (fm->wind->getIsOn()){
+                fm->wind->turnOff();
+                rocket->minusForce(fm->wind->getForce());
+            }else { fm->wind->turnOn();}
+        }
+        //std::cout << "Wind Force: " << fm->wind->getForce().x << ":" << fm->wind->getForce().y << ":" << fm->wind->getForce().z << std::endl;
 
+        std::cout << "Rocket Force: " << rocket->getForce().x
+            << ":" << rocket->getForce().y << ":" 
+            << rocket->getForce().z << std::endl;
         BeginDrawing();
         w.display();
 

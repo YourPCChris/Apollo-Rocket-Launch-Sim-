@@ -9,7 +9,7 @@ Rocket::Rocket()
     color = RED;
     dx = 0;
     dy = 0;
-    pos = (Vector3){0.0f,height/2,0.0f};
+    pos = (Vector3){0.0f,(float)height/2,0.0f};
     boosterOn = false;
 }
 
@@ -22,11 +22,18 @@ void Rocket::launch()
     dy = 1;
 }
 
-void Rocket::update(int xForces, int yForces, int zForces)
+void Rocket::update(float xForces, float yForces, float zForces)
 {
     pos.x += dx + xForces;
     pos.y += dy + yForces;
     pos.z += dz + zForces;
+}
+
+void Rocket::minusForce(Vector3 newForce)
+{
+    dx = dx - newForce.x;
+    dy = dy - newForce.y;
+    dz = dz - newForce.z;
 }
 
 void Rocket::pause()
@@ -61,4 +68,5 @@ void Rocket::display()
 }
 
 bool Rocket::getBoosterOn() { return boosterOn;}
+Vector3 Rocket::getForce() { return (Vector3){dx,dy,dz}; }
 

@@ -13,7 +13,7 @@ struct Sphere
 class Wind
 {
     Vector3 force;
-    int speed;
+    float speed;
     std::vector<std::unique_ptr<Sphere>> balls;
     Direction direction;
     bool isOn;
@@ -45,6 +45,7 @@ class Gravity
     int getG();
     void turnOn();
     void turnOff();
+    bool getIsOn();
 };
 
 class ForceManagement
