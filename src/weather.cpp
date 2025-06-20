@@ -1,4 +1,5 @@
 
+#include <iostream>
 #include "weather.h"
 #include "raylib.h"
 //Weather CPP
@@ -53,9 +54,11 @@ void Wind::turnOff() { isOn = false; }
 
 
 //-----------------------Gravity------------------------------------------
-Gravity::Gravity(int newG) : g(newG), force((Vector3){0.0f, (float)newG, 0.0f}){};
+Gravity::Gravity(int newG) : g(newG), force((Vector3){0.0f, 0.0f, 0.0f}){};
 void Gravity::setG(int newG) { g = newG; }
 int Gravity::getG() { return g; }
+void Gravity::turnOn() { isOn = true; }
+void Gravity::turnOff() { isOn = false; }
 Vector3 Gravity::getForce() { return force; }
 
 

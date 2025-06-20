@@ -35,6 +35,7 @@ class Wind
 class Gravity
 {
     int g;
+    bool isOn;
     Vector3 force;
 
     public: 

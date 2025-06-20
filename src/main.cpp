@@ -36,12 +36,12 @@ int main()
 
         if (IsKeyPressed(KEY_ONE)) (rocket->getBoosterOn()) ? rocket->pause() : rocket->launch();
         if (IsKeyPressed(KEY_TWO)) rocket->resetPos();
-        if (IsKeyPressed(KEY_THREE)) (fm->wind->getIsOn()) ? (fm->wind->turnOff()) : (fm->wind->turnOn());
+        //if (IsKeyPressed(KEY_THREE)) (fm->wind->getIsOn()) ? (fm->wind->turnOff()) : (fm->wind->turnOn());
 
         BeginDrawing();
         w.display();
 
-        //fm->update();
+        fm->update();
         BeginMode3D(camera);
         //DrawCube((Vector3){0.0f, 0.0f, 0.0f}, 2.0f, 2.0f, 2.0f, RED);
         DrawGrid(300, 1.0f);
