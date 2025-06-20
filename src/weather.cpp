@@ -7,6 +7,20 @@
 ForceManagement::ForceManagement()
 {
     forces = (Vector3){0.0f,0.0f,0.0f};
+    wind = std::make_unique<Wind>();
+    gravity = std::make_unique<Gravity>();
+}
+
+Vector3 addVector3(Vector3 vecOne, Vector3 vecTwo)
+{
+    Vector3 tempVec = Vector3 { (float)vecOne.x + vecTwo.x, (float)vecOne.y + vecTwo.y, (float)vecOne.z + vecTwo.z };
+    return tempVec;
+}
+
+void ForceManagement::update() 
+{
+    forces = addVector3(forces, wind->getForce());
+    forces = addVector3(forces, gravity->getForce());
 }
 
 void ForceManagement::addXForce(int newForce) { forces.x = forces.x + newForce; }
@@ -21,19 +35,28 @@ int ForceManagement::getZForce() { return forces.z; }
 //-----------------------Wind-------------------------------------------
 Wind::Wind()
 {
-    speed = 0.5;
+    force = Vector3 { 0.0f, 0.0f, 0.0f };
+    speed = 0;
+    isOn = false;
 }
 
+void Wind::display(){}
+
 void Wind::setDirection(Direction newDirection) { direction = newDirection; }
+Vector3 Wind::getForce() { return force; }
 void Wind::setSpeed(int newSpeed) { speed = newSpeed; }
 int Wind::getSpeed() { return speed; }
 Direction Wind::getDirection() { return direction; }
+bool Wind::getIsOn() { return isOn; }
+void Wind::turnOn() { isOn = true; }
+void Wind::turnOff() { isOn = false; }
 
 
 //-----------------------Gravity------------------------------------------
-Gravity::Gravity(int newG) : g(newG) {};
+Gravity::Gravity(int newG) : g(newG), force((Vector3){0.0f, (float)newG, 0.0f}){};
 void Gravity::setG(int newG) { g = newG; }
 int Gravity::getG() { return g; }
+Vector3 Gravity::getForce() { return force; }
 
 
 

@@ -18,7 +18,7 @@ int main()
     InitWindow(w.getWidth(), w.getHeight(), "Apollo");
 
     Camera3D camera = {0};
-    camera.position = (Vector3){100.0f,100.0f,100.0f};
+    camera.position = (Vector3){200.0f,200.0f,200.0f};
     camera.target = (Vector3){0.0f,0.0f,0.0f};
     camera.up = (Vector3){0.0f, 1.0f, 0.0f};
     camera.fovy = 45.0f;
@@ -36,10 +36,12 @@ int main()
 
         if (IsKeyPressed(KEY_ONE)) (rocket->getBoosterOn()) ? rocket->pause() : rocket->launch();
         if (IsKeyPressed(KEY_TWO)) rocket->resetPos();
+        if (IsKeyPressed(KEY_THREE)) (fm->wind->getIsOn()) ? (fm->wind->turnOff()) : (fm->wind->turnOn());
 
         BeginDrawing();
         w.display();
 
+        //fm->update();
         BeginMode3D(camera);
         //DrawCube((Vector3){0.0f, 0.0f, 0.0f}, 2.0f, 2.0f, 2.0f, RED);
         DrawGrid(300, 1.0f);
